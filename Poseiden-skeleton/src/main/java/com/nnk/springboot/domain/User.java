@@ -1,6 +1,11 @@
 package com.nnk.springboot.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -10,20 +15,35 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @NotBlank(message = "Username is mandatory")
+    @Column
     private String username;
     @NotBlank(message = "Password is mandatory")
+    @Column
     private String password;
     @NotBlank(message = "FullName is mandatory")
+    @Column
     private String fullname;
     @NotBlank(message = "Role is mandatory")
+    @Column
     private String role;
 
-    public Integer getId() {
-        return id;
+    public User() {
+    	
     }
+    
+    public User(@NotBlank(message = "Username is mandatory") String username,
+			@NotBlank(message = "Password is mandatory") String password,
+			@NotBlank(message = "FullName is mandatory") String fullname,
+			@NotBlank(message = "Role is mandatory") String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.fullname = fullname;
+		this.role = role;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
+	public Integer getId() {
+        return id;
     }
 
     public String getUsername() {

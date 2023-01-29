@@ -9,35 +9,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "trade")
-public class Trade {
+@Table(name = "bidlist")
+public class Bid {
+    // TODO: Map columns in data table BID with corresponding java fields
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	@Column
 	String account; 
 	@Column
-	String accountType;
+	String typeAccount;
 	@Column
-	Double buyQuantity; 
+	Integer bidQuantity;
 	@Column
-	Double sellQuantity; 
+	Integer askQuantity;
 	@Column
-	Double buyPrice; 
+	Double bid;
 	@Column
-	Double sellPrice; 
+	Double ask;
 	@Column
 	String benchmark; 
 	@Column
-	Timestamp tradeDate; 
+	Timestamp bidDate; 
 	@Column
-	String security; 
+	String commentary; 
 	@Column
-	String status; 
+	String security;
 	@Column
-	String trader; 
+	String status;
+	@Column
+	String trader;
 	@Column
 	String book;
 	@Column
@@ -47,33 +49,34 @@ public class Trade {
 	@Column
 	String revisionName; 
 	@Column
-	Timestamp revisionDate;
+	Timestamp revisionDate; 
 	@Column
 	String dealName;
 	@Column
-	String dealType; 
+	String dealType;
 	@Column
-	String sourceListId;
+	String sourceListId; 
 	@Column
 	String side;
-	
-	public Trade() {
+
+	public Bid() {
 		
 	}
-
-	public Trade(String account, String accountType, Double buyQuantity, Double sellQuantity, Double buyPrice,
-			Double sellPrice, String benchmark, Timestamp tradeDate, String security, String status, String trader,
-			String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate,
-			String dealName, String dealType, String sourceListId, String side) {
+	
+	public Bid(String account, String typeAccount, Integer bidQuantity, Integer askQuantity, Double bid,
+			Double ask, String benchmark, Timestamp bidDate, String commentary, String security, String status,
+			String trader, String book, String creationName, Timestamp creationDate, String revisionName,
+			Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
 		super();
 		this.account = account;
-		this.accountType = accountType;
-		this.buyQuantity = buyQuantity;
-		this.sellQuantity = sellQuantity;
-		this.buyPrice = buyPrice;
-		this.sellPrice = sellPrice;
+		this.typeAccount = typeAccount;
+		this.bidQuantity = bidQuantity;
+		this.askQuantity = askQuantity;
+		this.bid = bid;
+		this.ask = ask;
 		this.benchmark = benchmark;
-		this.tradeDate = tradeDate;
+		this.bidDate = bidDate;
+		this.commentary = commentary;
 		this.security = security;
 		this.status = status;
 		this.trader = trader;
@@ -87,8 +90,8 @@ public class Trade {
 		this.sourceListId = sourceListId;
 		this.side = side;
 	}
-	
-	public Trade(String account, String type) {
+
+	public Bid(String account, String typeAccount, double d) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -99,122 +102,169 @@ public class Trade {
 	public String getAccount() {
 		return account;
 	}
+
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getAccountType() {
-		return accountType;
+
+	public String getTypeAccount() {
+		return typeAccount;
 	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+
+	public void setTypeAccount(String typeAccount) {
+		this.typeAccount = typeAccount;
 	}
-	public Double getBuyQuantity() {
-		return buyQuantity;
+
+	public Integer getBidQuantity() {
+		return bidQuantity;
 	}
-	public void setBuyQuantity(Double buyQuantity) {
-		this.buyQuantity = buyQuantity;
+
+	public void setBidQuantity(Integer bidQuantity) {
+		this.bidQuantity = bidQuantity;
 	}
-	public Double getSellQuantity() {
-		return sellQuantity;
+
+	public Integer getAskQuantity() {
+		return askQuantity;
 	}
-	public void setSellQuantity(Double sellQuantity) {
-		this.sellQuantity = sellQuantity;
+
+	public void setAskQuantity(Integer askQuantity) {
+		this.askQuantity = askQuantity;
 	}
-	public Double getBuyPrice() {
-		return buyPrice;
+
+	public Double getBid() {
+		return bid;
 	}
-	public void setBuyPrice(Double buyPrice) {
-		this.buyPrice = buyPrice;
+
+	public void setBid(Double bid) {
+		this.bid = bid;
 	}
-	public Double getSellPrice() {
-		return sellPrice;
+
+	public Double getAsk() {
+		return ask;
 	}
-	public void setSellPrice(Double sellPrice) {
-		this.sellPrice = sellPrice;
+
+	public void setAsk(Double ask) {
+		this.ask = ask;
 	}
+
 	public String getBenchmark() {
 		return benchmark;
 	}
+
 	public void setBenchmark(String benchmark) {
 		this.benchmark = benchmark;
 	}
-	public Timestamp getTradeDate() {
-		return tradeDate;
+
+	public Timestamp getBidDate() {
+		return bidDate;
 	}
-	public void setTradeDate(Timestamp tradeDate) {
-		this.tradeDate = tradeDate;
+
+	public void setBidListDate(Timestamp bidDate) {
+		this.bidDate = bidDate;
 	}
+
+	public String getCommentary() {
+		return commentary;
+	}
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
+	}
+
 	public String getSecurity() {
 		return security;
 	}
+
 	public void setSecurity(String security) {
 		this.security = security;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getTrader() {
 		return trader;
 	}
+
 	public void setTrader(String trader) {
 		this.trader = trader;
 	}
+
 	public String getBook() {
 		return book;
 	}
+
 	public void setBook(String book) {
 		this.book = book;
 	}
+
 	public String getCreationName() {
 		return creationName;
 	}
+
 	public void setCreationName(String creationName) {
 		this.creationName = creationName;
 	}
+
 	public Timestamp getCreationDate() {
 		return creationDate;
 	}
+
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
+
 	public String getRevisionName() {
 		return revisionName;
 	}
+
 	public void setRevisionName(String revisionName) {
 		this.revisionName = revisionName;
 	}
+
 	public Timestamp getRevisionDate() {
 		return revisionDate;
 	}
+
 	public void setRevisionDate(Timestamp revisionDate) {
 		this.revisionDate = revisionDate;
 	}
+
 	public String getDealName() {
 		return dealName;
 	}
+
 	public void setDealName(String dealName) {
 		this.dealName = dealName;
 	}
+
 	public String getDealType() {
 		return dealType;
 	}
+
 	public void setDealType(String dealType) {
 		this.dealType = dealType;
 	}
+
 	public String getSourceListId() {
 		return sourceListId;
 	}
+
 	public void setSourceListId(String sourceListId) {
 		this.sourceListId = sourceListId;
 	}
+
 	public String getSide() {
 		return side;
 	}
+
 	public void setSide(String side) {
 		this.side = side;
 	}
-
+	
 }
