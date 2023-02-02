@@ -8,19 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "bidlist")
 public class Bid {
-    // TODO: Map columns in data table BID with corresponding java fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
+	@NotBlank(message = "Account is mandatory")
 	@Column
-	String account; 
+	String account;
+	@NotBlank(message = "Type is mandatory")
 	@Column
 	String typeAccount;
 	@Column
+	@NotNull(message = "Bid Quantity is mandatory") @Min(0)
 	Integer bidQuantity;
 	@Column
 	Integer askQuantity;
@@ -63,11 +68,12 @@ public class Bid {
 		
 	}
 	
-	public Bid(String account, String typeAccount, Integer bidQuantity, Integer askQuantity, Double bid,
+	public Bid(Integer id, String account, String typeAccount, Integer bidQuantity, Integer askQuantity, Double bid,
 			Double ask, String benchmark, Timestamp bidDate, String commentary, String security, String status,
 			String trader, String book, String creationName, Timestamp creationDate, String revisionName,
 			Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
 		super();
+		this.id = id;
 		this.account = account;
 		this.typeAccount = typeAccount;
 		this.bidQuantity = bidQuantity;
@@ -97,6 +103,10 @@ public class Bid {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getAccount() {
@@ -159,7 +169,7 @@ public class Bid {
 		return bidDate;
 	}
 
-	public void setBidListDate(Timestamp bidDate) {
+	public void setBidDate(Timestamp bidDate) {
 		this.bidDate = bidDate;
 	}
 

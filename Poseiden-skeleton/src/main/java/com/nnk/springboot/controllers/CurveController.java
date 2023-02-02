@@ -1,54 +1,83 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.CurvePoint;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javax.validation.Valid;
+import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.domain.dto.CurveFormDTO;
+import com.nnk.springboot.services.CurvePointService;
 
 @Controller
+@RequestMapping("/curvePoint")
+@SessionAttributes("user")
 public class CurveController {
-    // TODO: Inject Curve Point service
+	
+	@Autowired
+	private CurvePointService curvePointService;
+	
+	@ModelAttribute("curvePoint")
+	public CurvePoint curvePoint() {
+		return new CurvePoint();
+	}
 
-    @RequestMapping("/curvePoint/list")
-    public String home(Model model)
+    @RequestMapping("/list")
+    public String home(Authentication auth, Model model)
     {
-        // TODO: find all Curve Point, add to model
+    	model.addAttribute("curvepointlist", curvePointService.findAllCurvePoint());
         return "curvePoint/list";
     }
 
-    @GetMapping("/curvePoint/add")
-    public String addBidForm(CurvePoint bid) {
+    @GetMapping("/add")
+    public String addCurvePointForm(Authentication auth, Model model) {
         return "curvePoint/add";
     }
 
-    @PostMapping("/curvePoint/validate")
-    public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Curve list
+    @PostMapping("/validate")
+    public String validate(@ModelAttribute("curvePoint") @Valid CurveFormDTO curveFormDto, 
+    		BindingResult result, Model model) {
+    	if (!result.hasErrors()) {
+    		curvePointService.create(curveFormDto);
+            model.addAttribute("curvePoint", curvePointService.findAllCurvePoint());
+            return "redirect:/curvePoint/list";
+        }
         return "curvePoint/add";
     }
 
-    @GetMapping("/curvePoint/update/{id}")
+    @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get CurvePoint by Id and to model then show to the form
+    	CurveFormDTO curveFormDto = curvePointService.getCurvePointById(id);
+    	if (curveFormDto == null) {
+    		// COMPLETER !!!
+    	}
+    	model.addAttribute("curvePoint", curveFormDto);
         return "curvePoint/update";
     }
 
-    @PostMapping("/curvePoint/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
-                             BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Curve and return Curve list
+    @PostMapping("/update/{id}")
+    public String updateCurvePoint(@PathVariable("id") Integer id, 
+    							   @ModelAttribute @Valid CurveFormDTO curveFormDto, 
+    							   BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "curvePoint/update";
+        }
+        curvePointService.update(id, curveFormDto);
         return "redirect:/curvePoint/list";
     }
 
-    @GetMapping("/curvePoint/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Curve by Id and delete the Curve, return to Curve list
+    @GetMapping("/delete/{id}")
+    public String deleteCurvePoint(@PathVariable("id") Integer id, Model model) {
+    	curvePointService.deleteCurvePointById(id);
         return "redirect:/curvePoint/list";
     }
 }

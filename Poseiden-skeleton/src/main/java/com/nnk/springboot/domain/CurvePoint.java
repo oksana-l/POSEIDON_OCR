@@ -8,23 +8,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name = "curvepoint")
 public class CurvePoint {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	Integer id;
+	@NotNull(message = "Curve Id is mandatory")
 	@Column
 	Integer curveId; 
 	@Column
-	Timestamp asOfDate; 
+	Timestamp asOfDate;
+	@NotNull(message = "Term is mandatory")
 	@Column
 	Double term;
+	@NotNull(message = "Value is mandatory")
 	@Column
-	Double curveValue;
+	Double value;
 	@Column
 	Timestamp creationDate;	
 	
@@ -32,19 +35,19 @@ public class CurvePoint {
 		
 	}
 
-	public CurvePoint(Timestamp asOfDate, Double term, Double curveValue,
+	public CurvePoint(Timestamp asOfDate, Double term, Double value,
 			Timestamp creationDate) {
 		super();
 		this.asOfDate = asOfDate;
 		this.term = term;
-		this.curveValue = curveValue;
+		this.value = value;
 		this.creationDate = creationDate;
 	}
 
 	// a voir si vraiment besoin
 	public CurvePoint(Integer id, Double term, Double curveValue) {
 		this.term = term;
-		this.curveValue = curveValue;
+		this.value = curveValue;
 	}
 
 	public Integer getId() {
@@ -75,12 +78,12 @@ public class CurvePoint {
 		this.term = term;
 	}
 
-	public Double getCurveValue() {
-		return curveValue;
+	public Double getValue() {
+		return value;
 	}
 
-	public void setCurveValue(Double curveValue) {
-		this.curveValue = curveValue;
+	public void setValue(Double value) {
+		this.value = value;
 	}
 
 	public Timestamp getCreationDate() {

@@ -19,7 +19,7 @@ public class Trade {
 	@Column
 	String account; 
 	@Column
-	String accountType;
+	String type;
 	@Column
 	Double buyQuantity; 
 	@Column
@@ -67,7 +67,7 @@ public class Trade {
 			String dealName, String dealType, String sourceListId, String side) {
 		super();
 		this.account = account;
-		this.accountType = accountType;
+		this.type = accountType;
 		this.buyQuantity = buyQuantity;
 		this.sellQuantity = sellQuantity;
 		this.buyPrice = buyPrice;
@@ -103,10 +103,10 @@ public class Trade {
 		this.account = account;
 	}
 	public String getAccountType() {
-		return accountType;
+		return type;
 	}
 	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+		this.type = accountType;
 	}
 	public Double getBuyQuantity() {
 		return buyQuantity;

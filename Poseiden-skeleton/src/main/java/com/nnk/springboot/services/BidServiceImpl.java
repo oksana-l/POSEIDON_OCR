@@ -13,7 +13,6 @@ public class BidServiceImpl implements BidService {
 
 	private BidRepository bidRepository;
 	
-	
 	public BidServiceImpl(BidRepository bidRepository) {
 		super();
 		this.bidRepository = bidRepository;
@@ -26,18 +25,31 @@ public class BidServiceImpl implements BidService {
 	}
 
 	@Override
-	public Bid save(BidFormDTO bid) {
-		Bid newBid = new Bid(bid.getAccount(), bid.getTypeAccount(),
-							 bid.getBidQuantity(), null, null, null, null,
-							 null, null, null, null, null, null, null, null,
-							 null, null, null, null, null, null);
+	public Bid create(BidFormDTO bid) {
+		Bid newBid = new Bid();
+		newBid.setAccount(bid.getAccount());
+		newBid.setTypeAccount(bid.getTypeAccount());
+		newBid.setBidQuantity(bid.getBidQuantity());
 		return bidRepository.save(newBid);
 	}
 
 	@Override
-	public Double getBidById(Integer id) {
-
-		return bidRepository.getBidById(id).get().getBid();
+	public BidFormDTO getBidById(Integer id) {
+		return new BidFormDTO(bidRepository.getBidById(id).get());
 	}
 
+	@Override
+	public Bid update(Integer id, BidFormDTO bidDto) {
+		Bid bid = bidRepository.getBidById(id).get();
+		bid.setAccount(bidDto.getAccount());
+		bid.setTypeAccount(bidDto.getTypeAccount());
+		bid.setBidQuantity(bidDto.getBidQuantity());
+		return bidRepository.save(bid);
+		
+	}
+
+	@Override
+	public void deleteBidById(Integer id) {
+		bidRepository.deleteById(id);
+	}
 }

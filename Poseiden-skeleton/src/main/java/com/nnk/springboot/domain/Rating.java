@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "rating")
@@ -15,20 +17,25 @@ public class Rating {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	Integer id;
 	@Column
+	@NotBlank(message = "Moody's Rating is mandatory")
 	String moodysRating; 
 	@Column
+	@NotBlank(message = "SandP Rating is mandatory")
 	String sandPRating; 
 	@Column
+	@NotBlank(message = "Fitch Rating is mandatory")
 	String fitchRating; 
 	@Column
+	@NotNull(message = "Order Number is mandatory")
 	Integer orderNumber;
 	
 	public Rating() {
 		
 	}
 
-	public Rating(String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
+	public Rating(Integer id, String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
 		super();
+		this.id = id;
 		this.moodysRating = moodysRating;
 		this.sandPRating = sandPRating;
 		this.fitchRating = fitchRating;
@@ -37,6 +44,10 @@ public class Rating {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getMoodysRating() {

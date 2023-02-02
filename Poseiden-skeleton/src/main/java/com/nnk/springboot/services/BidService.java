@@ -9,7 +9,11 @@ public interface BidService {
 
 	List<Bid> findAllBids();
 
-	Bid save(BidFormDTO bid);
+	Bid create(BidFormDTO bid);
 
-	Double getBidById(Integer id);
+	BidFormDTO getBidById(Integer id);
+
+	void deleteBidById(Integer id);
+
+	Bid update(Integer id, BidFormDTO bidDto);
 }

@@ -10,5 +10,7 @@ import com.nnk.springboot.domain.Bid;
 @Repository
 public interface BidRepository extends JpaRepository<Bid, Integer> {
 
-	public Optional<Bid> getBidById (Integer id);
+	public Optional<Bid> getBidById(Integer id);
+
+
 }

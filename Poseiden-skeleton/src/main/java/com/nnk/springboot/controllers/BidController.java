@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,21 +45,8 @@ public class BidController {
     @PostMapping("/validate")
     public String validate(@ModelAttribute("bid") @Valid BidFormDTO bidDto,
     					BindingResult result, Model model) {
-		if (bidDto.getAccount() == "") {
-			FieldError error = new FieldError("bid", "account", 
-											  "Account is mandatory");
-			result.addError(error);
-			return "bid/add";
-		}
-		
-		if (bidDto.getTypeAccount() == "") {
-			FieldError error = new FieldError("bid", "typeAccount",
-											  "Type is mandatory");
-			result.addError(error);
-			return "bid/add";
-		}
-		else if (!result.hasErrors()) {
-        	bidService.save(bidDto);
+    	if (!result.hasErrors()) {
+        	bidService.create(bidDto);
             model.addAttribute("bid", bidService.findAllBids());
             return "redirect:/bid/list";
         }
@@ -68,22 +54,32 @@ public class BidController {
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form 
-    	bidService.getBidById(id);
+    public String showUpdateForm(@PathVariable("id") Integer id, BindingResult result, 
+    							Model model) {
+    	BidFormDTO bidToUpdate = bidService.getBidById(id);
+        if (bidToUpdate == null) {
+        	throw new IllegalArgumentException("Invalid Bid Id:" + id);
+        }
+        model.addAttribute("bid", bidToUpdate);
         return "bid/update";
     }
 
     @PostMapping("/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid Bid bid,
-                             BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
+    public String updateBid(@PathVariable("id") Integer id, 
+    		@ModelAttribute @Valid BidFormDTO bidDto, BindingResult result, Model model) {
+    
+        if (result.hasErrors()) {
+            return "bid/update";
+        }
+        
+        bidService.update(id, bidDto);
+        
         return "redirect:/bid/list";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
+    public String deleteBid(@PathVariable("id") Integer id) {
+    	bidService.deleteBidById(id);
         return "redirect:/bid/list";
     }
 }

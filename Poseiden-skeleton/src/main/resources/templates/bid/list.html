@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Home</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css" >
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	</head>
 	<body>
 		<div class="container">
@@ -37,13 +37,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
 						<tr th:each="bid : ${bidList}">
-							<td th:text="${bid.id}"></td> 
+							<td style="width: 10%" th:text="${bid.id}"></td> 
 							<td th:text="${bid.account}"></td>
 							<td th:text="${bid.typeAccount}"></td>
-							<td th:text="${bid.bidQuantity}"></td> 
-							<td th:text="${bid.id}"></td> <!-- TODO: inserer les liens -->
+							<td style="width: 25%" th:text="${bid.bidQuantity}"></td> 
+							<td style="width: 15%" class="text-center">
+								<a th:href="@{/bid/update/{id}(id=${bid.id})}">Edit</a>&nbsp;|&nbsp;
+								<a th:href="@{delete/{id}(id=${bid.id})}">Delete</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

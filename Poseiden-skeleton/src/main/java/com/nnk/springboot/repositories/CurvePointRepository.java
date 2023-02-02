@@ -8,4 +8,6 @@ import com.nnk.springboot.domain.CurvePoint;
 @Repository
 public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer> {
 
+	CurvePoint getCurvePointById(Integer id);
+
 }
