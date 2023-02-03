@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "rule")
@@ -15,25 +16,32 @@ public class Rule {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	Integer id;
 	@Column
+	@NotBlank(message = "Name is mandatory")
 	String name;
 	@Column
+	@NotBlank(message = "Description is mandatory")
 	String description; 
 	@Column
+	@NotBlank(message = "Json is mandatory")
 	String json;
 	@Column
-	String template; 
+	@NotBlank(message = "Template is mandatory")
+	String template;
 	@Column
+	@NotBlank(message = "SQLstr is mandatory")
 	String sqlStr; 
 	@Column
+	@NotBlank(message = "SQLpart is mandatory")
 	String sqlPart;
 	
 	public Rule() {
 		
 	}
 
-	public Rule(String name, String description, String json, String template, String sqlStr,
+	public Rule(Integer id, String name, String description, String json, String template, String sqlStr,
 			String sqlPart) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.json = json;
@@ -45,7 +53,11 @@ public class Rule {
 	public Integer getId() {
 		return id;
 	}
-
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}

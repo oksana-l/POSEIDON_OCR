@@ -20,7 +20,6 @@ public class BidServiceImpl implements BidService {
 
 	@Override
 	public List<Bid> findAllBids() {
-		
 		return bidRepository.findAll();
 	}
 

@@ -10,13 +10,13 @@ public class RatingFormDTO {
 
 	private Integer id;
 	@NotBlank
-	String moodysRating; 
+	private String moodysRating; 
 	@NotBlank
-	String sandPRating; 
+	private String sandPRating; 
 	@NotBlank
-	String fitchRating; 
+	private String fitchRating; 
 	@NotNull @Min(0)
-	Integer orderNumber;
+	private Integer orderNumber;
 
 	public RatingFormDTO() {
 		super();

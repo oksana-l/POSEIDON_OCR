@@ -9,7 +9,7 @@ import com.nnk.springboot.domain.Bid;
 public class BidFormDTO {
 
 	private Integer id;
-	@NotBlank(message = "Account is mandatory")
+	@NotBlank
 	private String account;
 	@NotBlank
 	private String typeAccount;

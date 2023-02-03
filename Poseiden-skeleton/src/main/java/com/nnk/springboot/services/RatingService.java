@@ -9,11 +9,11 @@ public interface RatingService {
 
 	List<Rating> findAllRating();
 
-	Rating create(RatingFormDTO bid);
+	Rating create(RatingFormDTO rating);
 
 	void deleteRatingById(Integer id);
 
-	Rating update(Integer id, RatingFormDTO bidDto);
+	Rating update(Integer id, RatingFormDTO ratingDto);
 
 	RatingFormDTO getRatingById(Integer id);
 }

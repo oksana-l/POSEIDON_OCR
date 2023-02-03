@@ -9,11 +9,11 @@ public class CurveFormDTO {
 
 	private Integer id;
 	@NotNull @Min(0)
-	Integer curveId;
+	private Integer curveId;
 	@NotNull @Min(0)
-	Double term;
+	private Double term;
 	@NotNull
-	Double value;
+	private Double value;
 	
 	public CurveFormDTO() {
 		super();
