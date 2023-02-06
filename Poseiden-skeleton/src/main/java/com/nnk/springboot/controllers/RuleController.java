@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.nnk.springboot.domain.Rule;
+import com.nnk.springboot.domain.dto.RuleFormDTO;
 import com.nnk.springboot.services.RuleService;
 
 @Controller
@@ -36,32 +38,41 @@ public class RuleController {
     }
 
     @GetMapping("/add")
-    public String addRuleForm(Rule bid) {
+    public String addRuleForm(Authentication auth, Model model) {
         return "rule/add";
     }
 
     @PostMapping("/validate")
-    public String validate(@Valid Rule rule, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Rule list
+    public String validate(@Valid RuleFormDTO ruleDto, BindingResult result, Model model) {
+    	if (!result.hasErrors()) {
+    		ruleService.create(ruleDto);
+            model.addAttribute("rule", ruleService.findAllRule());
+            return "redirect:/rule/list";
+        }
         return "rule/add";
     }
 
     @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Rule by Id and to model then show to the form
+        model.addAttribute("rule", ruleService.getRuleById(id));
         return "rule/update";
     }
 
     @PostMapping("/update/{id}")
-    public String updateRule(@PathVariable("id") Integer id, @Valid Rule rule,
+    public String updateRule(@PathVariable("id") Integer id, @Valid RuleFormDTO ruleDto,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rule and return Rule list
+        if (result.hasErrors()) {
+            return "rule/update";
+        }
+        
+        ruleService.update(id, ruleDto);
         return "redirect:/rule/list";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Rule by Id and delete the Rule, return to Rule list
+    	ruleService.deleteRuleById(id);
         return "redirect:/rule/list";
     }
 }
