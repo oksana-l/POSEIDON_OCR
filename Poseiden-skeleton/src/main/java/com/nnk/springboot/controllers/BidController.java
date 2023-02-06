@@ -43,7 +43,7 @@ public class BidController {
     }
 
     @PostMapping("/validate")
-    public String validate(@ModelAttribute("bid") @Valid BidFormDTO bidDto,
+    public String validate(@Valid BidFormDTO bidDto,
     					BindingResult result, Model model) {
     	if (!result.hasErrors()) {
         	bidService.create(bidDto);
@@ -54,8 +54,7 @@ public class BidController {
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, BindingResult result, 
-    							Model model) {
+    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
     	BidFormDTO bidToUpdate = bidService.getBidById(id);
         if (bidToUpdate == null) {
         	throw new IllegalArgumentException("Invalid Bid Id:" + id);

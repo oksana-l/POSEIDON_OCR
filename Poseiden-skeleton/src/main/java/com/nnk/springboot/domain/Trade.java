@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "trade")
@@ -16,11 +18,14 @@ public class Trade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	Integer id;
+	@NotBlank(message = "Account is mandatory")
 	@Column
 	String account; 
 	@Column
+	@NotBlank(message = "Type is mandatory")
 	String type;
 	@Column
+	@NotNull(message = "Buy Quantity is mandatory") @Min(0)
 	Double buyQuantity; 
 	@Column
 	Double sellQuantity; 

@@ -18,7 +18,7 @@
 		</div>
 		<div class="col-6 text-right">
 			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
-			<form th:action="@{/app-logout}" method="POST">
+			<form th:action="@{/logout}" method="POST">
 				<input type="submit" value="Logout"/>
 			</form>
 		</div>
@@ -37,7 +37,16 @@
 				</tr>
 			</thead>
 			<tbody>
-			<!-- TODO: Show all Trade to the table, the Action column will have Edit & Delete buttons -->
+				<tr th:each="trade : ${tradeList}">
+					<td style="width: 10%" th:text="${trade.id}"></td> 
+					<td th:text="${trade.account}"></td>
+					<td th:text="${trade.typeAccount}"></td>
+					<td style="width: 25%" th:text="${trade.buyQuantity}"></td> 
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/trade/update/{id}(id=${trade.id})}">Edit</a>&nbsp;|&nbsp;
+						<a th:href="@{delete/{id}(id=${trade.id})}">Delete</a>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

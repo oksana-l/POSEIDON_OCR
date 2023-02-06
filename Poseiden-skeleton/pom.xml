@@ -139,5 +139,9 @@
 	      </plugin>
 	    </plugins>
 	  </reporting>
+	  
+	  <session-config>
+		  <tracking-mode>COOKIE</tracking-mode>
+	  </session-config>
 
 </project>
