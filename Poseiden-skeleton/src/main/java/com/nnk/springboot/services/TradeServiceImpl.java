@@ -27,7 +27,7 @@ public class TradeServiceImpl implements TradeService {
 	public Trade create(TradeFormDTO tradeDto) {
 		Trade newTrade = new Trade();
 		newTrade.setAccount(tradeDto.getAccount());
-		newTrade.setAccountType(tradeDto.getType());
+		newTrade.setType(tradeDto.getType());
 		newTrade.setBuyQuantity(tradeDto.getBuyQuantity());
 		return tradeRepository.save(newTrade);
 	}
@@ -41,7 +41,7 @@ public class TradeServiceImpl implements TradeService {
 	public Trade update(Integer id, TradeFormDTO tradeDto) {
 		Trade trade = tradeRepository.findById(id).get();
 		trade.setAccount(tradeDto.getAccount());
-		trade.setAccountType(tradeDto.getType());
+		trade.setType(tradeDto.getType());
 		trade.setBuyQuantity(tradeDto.getBuyQuantity());
 		return tradeRepository.save(trade);
 	}

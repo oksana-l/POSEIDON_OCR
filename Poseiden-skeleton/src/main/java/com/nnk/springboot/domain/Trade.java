@@ -66,11 +66,12 @@ public class Trade {
 		
 	}
 
-	public Trade(String account, String accountType, Double buyQuantity, Double sellQuantity, Double buyPrice,
+	public Trade(Integer id, String account, String accountType, Double buyQuantity, Double sellQuantity, Double buyPrice,
 			Double sellPrice, String benchmark, Timestamp tradeDate, String security, String status, String trader,
 			String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate,
 			String dealName, String dealType, String sourceListId, String side) {
 		super();
+		this.id = id;
 		this.account = account;
 		this.type = accountType;
 		this.buyQuantity = buyQuantity;
@@ -107,10 +108,10 @@ public class Trade {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getAccountType() {
+	public String getType() {
 		return type;
 	}
-	public void setAccountType(String accountType) {
+	public void setType(String accountType) {
 		this.type = accountType;
 	}
 	public Double getBuyQuantity() {

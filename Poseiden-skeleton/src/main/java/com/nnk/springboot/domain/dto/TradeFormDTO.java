@@ -24,7 +24,7 @@ public class TradeFormDTO {
 		super();
 		this.id = trade.getId();
 		this.account = trade.getAccount();
-		this.type = trade.getAccountType();
+		this.type = trade.getType();
 		this.buyQuantity = trade.getBuyQuantity();
 	}
 
