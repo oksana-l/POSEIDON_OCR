@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.nnk.springboot.domain.dto.RatingFormDTO;
+
 @Entity
 @Table(name = "rating")
 public class Rating {
@@ -41,6 +43,14 @@ public class Rating {
 		this.sandPRating = sandPRating;
 		this.fitchRating = fitchRating;
 		this.orderNumber = orderNumber;
+	}
+
+	public Rating(RatingFormDTO ratingDto) {
+		this.id = ratingDto.getId();
+		this.moodysRating = ratingDto.getMoodysRating();
+		this.sandPRating = ratingDto.getSandPRating();
+		this.fitchRating = ratingDto.getFitchRating();
+		this.orderNumber = ratingDto.getOrderNumber();
 	}
 
 	public Integer getId() {
