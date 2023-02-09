@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import javax.validation.Valid;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import com.nnk.springboot.services.BidService;
 @SessionAttributes("user")
 public class BidController {
     
+	protected final Log logger = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	private BidService bidService;
 	
@@ -34,6 +38,7 @@ public class BidController {
     @GetMapping("/list")
     public String home(Authentication auth, Model model) {
     	 model.addAttribute("bidList", bidService.findAllBids());
+    	 logger.info("The list of Bids is displayed");
         return "bid/list";
     }
 

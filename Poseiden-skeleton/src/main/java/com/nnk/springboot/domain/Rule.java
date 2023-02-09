@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.nnk.springboot.domain.dto.RuleFormDTO;
+
 @Entity
 @Table(name = "rule")
 public class Rule {
@@ -48,6 +50,16 @@ public class Rule {
 		this.template = template;
 		this.sqlStr = sqlStr;
 		this.sqlPart = sqlPart;
+	}
+
+	public Rule(RuleFormDTO ruleDto) {
+		this.id = ruleDto.getId();
+		this.name = ruleDto.getName();
+		this.description = ruleDto.getDescription();
+		this.json = ruleDto.getJson();
+		this.template = ruleDto.getTemplate();
+		this.sqlStr = ruleDto.getSqlStr();
+		this.sqlPart = ruleDto.getSqlPart();
 	}
 
 	public Integer getId() {
