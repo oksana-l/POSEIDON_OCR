@@ -94,8 +94,10 @@ public class Trade {
 		this.side = side;
 	}
 	
-	public Trade(String account, String type) {
-		// TODO Auto-generated constructor stub
+	public Trade(String account, String type, Double buyQuantity) {
+		this.account = account;
+		this.type = type;
+		this.buyQuantity = buyQuantity;
 	}
 
 	public Integer getId() {

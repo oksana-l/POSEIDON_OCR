@@ -31,10 +31,7 @@ public class User {
     	
     }
     
-    public User(@NotBlank(message = "Username is mandatory") String username,
-			@NotBlank(message = "Password is mandatory") String password,
-			@NotBlank(message = "FullName is mandatory") String fullname,
-			@NotBlank(message = "Role is mandatory") String role) {
+    public User(String username, String password, String fullname, String role) {
 		super();
 		this.username = username;
 		this.password = password;

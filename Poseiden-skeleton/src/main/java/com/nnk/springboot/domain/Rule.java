@@ -38,8 +38,8 @@ public class Rule {
 		
 	}
 
-	public Rule(Integer id, String name, String description, String json, String template, String sqlStr,
-			String sqlPart) {
+	public Rule(Integer id, String name, String description, String json, 
+			String template, String sqlStr, String sqlPart) {
 		super();
 		this.id = id;
 		this.name = name;

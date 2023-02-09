@@ -12,6 +12,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.nnk.springboot.domain.dto.BidFormDTO;
+
 @Entity
 @Table(name = "bidlist")
 public class Bid {
@@ -97,8 +99,10 @@ public class Bid {
 		this.side = side;
 	}
 
-	public Bid(String account, String typeAccount, double d) {
-		// TODO Auto-generated constructor stub
+	public Bid(BidFormDTO bidDto) {
+		this.account = bidDto.getAccount();
+		this.typeAccount = bidDto.getTypeAccount();
+		this.bidQuantity = bidDto.getBidQuantity();
 	}
 
 	public Integer getId() {
