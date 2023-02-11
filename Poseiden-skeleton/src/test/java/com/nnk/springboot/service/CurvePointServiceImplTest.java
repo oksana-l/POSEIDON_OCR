@@ -33,7 +33,7 @@ public class CurvePointServiceImplTest {
 	}
 	
 	@Test
-	public void shouldFindAllCurvePoint() {
+	public void shouldFindAllCurvePointTest() {
 		CurvePoint curvePoint = new CurvePoint();
 		curvePoint.setCurveId(2);
 		List<CurvePoint> curvePointList= new ArrayList<CurvePoint>();
@@ -49,7 +49,7 @@ public class CurvePointServiceImplTest {
 	}
 	
 	@Test
-	public void shouldCreate() {
+	public void shouldCreateTest() {
 		CurveFormDTO curvePointDto = new CurveFormDTO();
 		curvePointDto.setCurveId(1);
 		curvePointDto.setTerm(3d);
@@ -66,7 +66,7 @@ public class CurvePointServiceImplTest {
 	}
 	
 	@Test
-	public void shouldGetBidById() {
+	public void shouldGetBidByIdTest() {
 		CurvePoint curvePoint = new CurvePoint();
 		curvePoint.setId(1);
 		curvePoint.setCurveId(1);
@@ -84,7 +84,7 @@ public class CurvePointServiceImplTest {
 	}
 	
 	@Test
-	public void shouldUpdate() {
+	public void shouldUpdateTest() {
 		CurveFormDTO curvePointDto = new CurveFormDTO();
 		curvePointDto.setCurveId(1);;
 		curvePointDto.setTerm(2d);;
@@ -106,7 +106,7 @@ public class CurvePointServiceImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteCurvePointById() {
+	public void shouldDeleteCurvePointByIdTest() {
 		CurvePoint curvePoint = new CurvePoint();
 		curvePoint.setId(1);
 		

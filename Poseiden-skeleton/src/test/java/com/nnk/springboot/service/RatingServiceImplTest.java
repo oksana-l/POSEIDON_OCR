@@ -33,7 +33,7 @@ public class RatingServiceImplTest {
 	}
 	
 	@Test
-	public void shouldFindAllRating() {
+	public void shouldFindAllRatingTest() {
 		Rating rating = new Rating();
 		rating.setMoodysRating("Premium");
 		List<Rating> ratingList= new ArrayList<Rating>();
@@ -49,7 +49,7 @@ public class RatingServiceImplTest {
 	}
 	
 	@Test
-	public void shouldCreate() {
+	public void shouldCreateTest() {
 		ratingDto = new RatingFormDTO();
 		ratingDto.setMoodysRating("First");
 		ratingDto.setSandPRating("Premium");
@@ -68,7 +68,7 @@ public class RatingServiceImplTest {
 	}
 	
 	@Test
-	public void shouldGetRatingById() {
+	public void shouldGetRatingByIdTest() {
 		Rating rating = new Rating();
 		rating.setId(1);
 		rating.setMoodysRating("TestAccount");
@@ -87,7 +87,7 @@ public class RatingServiceImplTest {
 	}
 	
 	@Test
-	public void shouldUpdate() {
+	public void shouldUpdateTest() {
 		ratingDto = new RatingFormDTO();
 		ratingDto.setMoodysRating("First");
 		ratingDto.setSandPRating("Premium");
@@ -112,7 +112,7 @@ public class RatingServiceImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteBidById() {
+	public void shouldDeleteBidByIdTest() {
 		Rating rating = new Rating();
 		rating.setId(1);
 		

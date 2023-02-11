@@ -52,18 +52,18 @@ public class UserController {
     @PostMapping("/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
     	
-		if (userService.ifUserExist(user)) {
+		if (userRepository.findByUsername(user.getUsername()) != null) {
 			FieldError error = new FieldError("user", "username", "L'utilisateur existe déjà");
 			result.addError(error);
 		}
         if (!result.hasErrors()) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
-            userService.save(user);
+            userService.create(user);
             model.addAttribute("users", userRepository.findAll());
-            return "redirect:/user/list";
+            return "redirect:/bid/list";
         }
-        return "add";
+        return "user/add";
     }
 
     @RolesAllowed("ADMIN")

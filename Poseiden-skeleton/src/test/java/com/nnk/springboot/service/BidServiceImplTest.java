@@ -34,7 +34,7 @@ public class BidServiceImplTest {
 	}
 	
 	@Test
-	public void shouldFindAllBids() {
+	public void shouldFindAllBidsTest() {
 		Bid bid = new Bid();
 		bid.setAccount("Premium");
 		List<Bid> bidList= new ArrayList<Bid>();
@@ -50,7 +50,7 @@ public class BidServiceImplTest {
 	}
 	
 	@Test
-	public void shouldCreate() {
+	public void shouldCreateTest() {
 		bidDto = new BidFormDTO();
 		bidDto.setAccount("First");
 		bidDto.setTypeAccount("Premium");
@@ -67,7 +67,7 @@ public class BidServiceImplTest {
 	}
 	
 	@Test
-	public void shouldGetBidById() {
+	public void shouldGetBidByIdTest() {
 		Bid bid = new Bid();
 		bid.setId(1);
 		bid.setAccount("TestAccount");
@@ -85,7 +85,7 @@ public class BidServiceImplTest {
 	}
 	
 	@Test
-	public void shouldUpdate() {
+	public void shouldUpdateTest() {
 		bidDto = new BidFormDTO();
 		bidDto.setAccount("First");
 		bidDto.setTypeAccount("Premium");
@@ -107,7 +107,7 @@ public class BidServiceImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteBidById() {
+	public void shouldDeleteBidByIdTest() {
 		Bid bid = new Bid();
 		bid.setId(1);
 		

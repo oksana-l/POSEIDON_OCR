@@ -12,6 +12,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.nnk.springboot.domain.dto.TradeFormDTO;
+
 @Entity
 @Table(name = "trade")
 public class Trade {
@@ -100,10 +102,19 @@ public class Trade {
 		this.buyQuantity = buyQuantity;
 	}
 
+	public Trade(TradeFormDTO tradeDto) {
+		this.id = tradeDto.getId();
+		this.account = tradeDto.getAccount();
+		this.type = tradeDto.getType();
+		this.buyQuantity = tradeDto.getBuyQuantity();
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getId() {
 		return id;
 	}
-
 	public String getAccount() {
 		return account;
 	}

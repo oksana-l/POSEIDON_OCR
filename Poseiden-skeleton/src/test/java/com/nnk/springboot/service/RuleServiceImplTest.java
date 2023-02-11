@@ -34,7 +34,7 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	public void shouldFindAllRule() {
+	public void shouldFindAllRuleTest() {
 		Rule rule = new Rule();
 		rule.setDescription("Description");
 		List<Rule> ruleList= new ArrayList<Rule>();
@@ -50,14 +50,14 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	public void shouldCreate() {
+	public void shouldCreateTest() {
 		ruleDto = new RuleFormDTO();
 		ruleDto.setName("Name");
 		ruleDto.setDescription("Description");
 		ruleDto.setJson("JSON");
 		ruleDto.setTemplate("Template");
 		ruleDto.setSqlStr("SqlStr");
-		ruleDto.setSqlPart("");
+		ruleDto.setSqlPart("SqlPart");
 		
 		when(ruleRepository.save(any())).thenReturn(new Rule(ruleDto));
 		
@@ -68,11 +68,11 @@ public class RuleServiceImplTest {
 		Assertions.assertEquals("JSON", savedRule.getJson());
 		Assertions.assertEquals("Template", savedRule.getTemplate());
 		Assertions.assertEquals("SqlStr", savedRule.getSqlStr());
-		Assertions.assertEquals("", savedRule.getSqlPart());		
+		Assertions.assertEquals("SqlPart", savedRule.getSqlPart());		
 	}
 	
 	@Test
-	public void shouldGetRuleById() {
+	public void shouldGetRuleByIdTest() {
 		Rule rule = new Rule();
 		rule.setId(1);
 		rule.setName("Name");
@@ -96,7 +96,7 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	public void shouldUpdate() {
+	public void shouldUpdateTest() {
 		ruleDto = new RuleFormDTO();
 		ruleDto.setName("Name");
 		ruleDto.setDescription("Description");
@@ -127,7 +127,7 @@ public class RuleServiceImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteRuleById() {
+	public void shouldDeleteRuleByIdTest() {
 		Rule rule = new Rule();
 		rule.setId(1);
 		

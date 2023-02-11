@@ -33,15 +33,9 @@ public class UserServieImpl implements UserService {
 		return new org.springframework.security.core.userdetails.User(
 				username, user.getPassword(), Arrays.asList(authority));
 	}
-	
+
 	@Override
-	public boolean ifUserExist(User user) {
-		
-		return userRepository.findByUsername(user.getUsername()) != null;
-	}
-	
-	@Override
-	public User save(User user) {
+	public User create(User user) {
 		User newUser = new User(user.getUsername(), user.getPassword(),  user.getFullname(),
 								user.getRole());
 		return userRepository.save(newUser);
