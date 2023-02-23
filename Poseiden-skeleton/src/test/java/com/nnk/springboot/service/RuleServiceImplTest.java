@@ -135,4 +135,11 @@ public class RuleServiceImplTest {
 		
 		verify(ruleRepository).deleteById(1);
 	}
+	
+	@Test
+	public void shouldVerifIsRuleExists() {
+		when(ruleRepository.existsById(anyInt())).thenReturn(true);
+		
+		Assertions.assertTrue(ruleService.ifRuleExists(anyInt()));
+	}
 }

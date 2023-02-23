@@ -26,7 +26,7 @@ public class UserServieImpl implements UserService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
 	    if(user == null){
-	        throw new UsernameNotFoundException("User not authorized.");
+	        throw new UsernameNotFoundException("User is not exists.");
 	    }
 	    GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
 	    
@@ -39,6 +39,12 @@ public class UserServieImpl implements UserService {
 		User newUser = new User(user.getUsername(), user.getPassword(),  user.getFullname(),
 								user.getRole());
 		return userRepository.save(newUser);
+	}
+
+	@Override
+	public boolean ifUserExists(Integer id) {
+		
+		return userRepository.existsById(id);
 	}
 
 }

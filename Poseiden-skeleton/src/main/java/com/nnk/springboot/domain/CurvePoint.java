@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.nnk.springboot.domain.dto.CurveFormDTO;
+import com.nnk.springboot.domain.dto.CurvePointFormDTO;
 
 
 @Entity
@@ -53,7 +53,7 @@ public class CurvePoint {
 		this.value = curveValue;
 	}
 
-	public CurvePoint(CurveFormDTO curvePointDto) {
+	public CurvePoint(CurvePointFormDTO curvePointDto) {
 		this.curveId = curvePointDto.getCurveId();
 		this.term = curvePointDto.getTerm();
 		this.value = curvePointDto.getValue();

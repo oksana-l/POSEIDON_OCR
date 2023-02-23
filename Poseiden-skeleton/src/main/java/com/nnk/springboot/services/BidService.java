@@ -16,4 +16,6 @@ public interface BidService {
 	void deleteBidById(Integer id);
 
 	Bid update(Integer id, BidFormDTO bidDto);
+	
+	boolean ifBidExists(Integer id);
 }

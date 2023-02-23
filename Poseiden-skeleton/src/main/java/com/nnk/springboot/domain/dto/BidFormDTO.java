@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,7 +19,7 @@ public class BidFormDTO {
 	private Integer bidQuantity;
 	
 	public BidFormDTO() {
-		
+		super();
 	}
 	
 	public BidFormDTO(Bid bid) {
@@ -26,6 +28,13 @@ public class BidFormDTO {
 		this.account = bid.getAccount();
 		this.typeAccount = bid.getTypeAccount();
 		this.bidQuantity = bid.getBidQuantity();
+	}
+
+	public BidFormDTO(String account, String typeAccount, Integer bidQuantity) {
+		super();
+		this.account = account;
+		this.typeAccount = typeAccount;
+		this.bidQuantity = bidQuantity;
 	}
 
 	public Integer getId() {
@@ -52,4 +61,23 @@ public class BidFormDTO {
 	public void setBidQuantity(Integer bidQuantity) {
 		this.bidQuantity = bidQuantity;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(account, bidQuantity, id, typeAccount);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BidFormDTO other = (BidFormDTO) obj;
+		return Objects.equals(account, other.account) && Objects.equals(bidQuantity, other.bidQuantity)
+				&& Objects.equals(id, other.id) && Objects.equals(typeAccount, other.typeAccount);
+	}
+	
 }

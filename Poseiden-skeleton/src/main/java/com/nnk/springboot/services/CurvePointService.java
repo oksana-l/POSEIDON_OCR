@@ -3,18 +3,19 @@ package com.nnk.springboot.services;
 import java.util.List;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.dto.CurveFormDTO;
+import com.nnk.springboot.domain.dto.CurvePointFormDTO;
 
 public interface CurvePointService {
 
 	List<CurvePoint> findAllCurvePoint();
 
-	CurvePoint create(CurveFormDTO curveFormDto);
+	CurvePoint create(CurvePointFormDTO curvePointFormDto);
 
-	CurveFormDTO getCurvePointById(Integer id);
+	CurvePointFormDTO getCurvePointById(Integer id);
 
-	CurvePoint update(Integer id, CurveFormDTO curveFormDto);
+	CurvePoint update(Integer id, CurvePointFormDTO curvePointFormDto);
 	
 	void deleteCurvePointById(Integer id);
-
+	
+	boolean ifCurvePointExists(Integer id);
 }

@@ -7,4 +7,6 @@ import com.nnk.springboot.domain.User;
 public interface UserService extends UserDetailsService {
 
 	User create(User user);
+	
+	boolean ifUserExists(Integer id);
 }

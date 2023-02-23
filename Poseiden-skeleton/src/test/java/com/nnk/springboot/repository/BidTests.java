@@ -30,6 +30,7 @@ public class BidTests {
 		Assertions.assertEquals(bid.getBidQuantity(), 10, 10);
 
 		// Update
+		bid.setAccount("Test");
 		bid.setBidQuantity(20);
 		bid = bidListRepository.save(bid);
 		Assertions.assertEquals(bid.getBidQuantity(), 20, 20);

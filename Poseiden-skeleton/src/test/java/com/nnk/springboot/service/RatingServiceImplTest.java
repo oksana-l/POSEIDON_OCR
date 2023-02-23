@@ -120,4 +120,11 @@ public class RatingServiceImplTest {
 		
 		verify(ratingRepository).deleteById(1);
 	}
+	
+	@Test
+	public void shouldVerifIsRatingExists() {
+		when(ratingRepository.existsById(anyInt())).thenReturn(true);
+		
+		Assertions.assertTrue(ratingService.ifRatingExists(anyInt()));
+	}
 }

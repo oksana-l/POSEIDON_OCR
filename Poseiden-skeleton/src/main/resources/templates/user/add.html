@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" >
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
 </head>
 <body>
 <div class="container">
@@ -26,7 +26,7 @@
 				<label for="username" class="col-sm-2 control-label">User Name</label>
 				<div class="col-sm-10">
 					<input type="text" th:field="*{username}" id="username" placeholder="User Name" class="col-4" 
-					required autofocus="autofocus" />
+					autofocus="autofocus" />
 					<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 				</div>
 			</div>

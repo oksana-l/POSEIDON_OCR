@@ -51,4 +51,10 @@ public class TradeServiceImpl implements TradeService {
 		tradeRepository.deleteById(id);
 	}
 
+	@Override
+	public boolean ifTradeExists(Integer id) {
+		
+		return tradeRepository.existsById(id);
+	}
+
 }

@@ -115,4 +115,11 @@ public class TradeServiceImplTest {
 		
 		verify(tradeRepository).deleteById(1);
 	}
+	
+	@Test
+	public void shouldVerifIsTradeExists() {
+		when(tradeRepository.existsById(anyInt())).thenReturn(true);
+		
+		Assertions.assertTrue(tradeService.ifTradeExists(anyInt()));
+	}
 }

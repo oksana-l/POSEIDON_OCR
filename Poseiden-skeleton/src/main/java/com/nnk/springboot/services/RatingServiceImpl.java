@@ -19,7 +19,6 @@ public class RatingServiceImpl implements RatingService {
 
 	@Override
 	public List<Rating> findAllRating() {
-		
 		return ratingRepository.findAll();
 	}
 
@@ -51,6 +50,11 @@ public class RatingServiceImpl implements RatingService {
 	@Override
 	public void deleteRatingById(Integer id) {
 		ratingRepository.deleteById(id);
+	}
+
+	@Override
+	public boolean ifRatingExists(Integer id) {
 		
+		return ratingRepository.existsById(id);
 	}
 }

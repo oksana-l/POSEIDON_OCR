@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.error {
+	display: flex;
+	width: 100%;
+	color: rgba(255,0,0);
+	justify-content: center;
+	margin-top: 1%;
+	margin-bottom: 0.5%;
+}

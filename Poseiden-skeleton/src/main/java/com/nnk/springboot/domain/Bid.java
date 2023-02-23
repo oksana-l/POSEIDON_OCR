@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -280,5 +281,33 @@ public class Bid {
 	public void setSide(String side) {
 		this.side = side;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(account, ask, askQuantity, benchmark, bid, bidDate, bidQuantity, book, commentary,
+				creationDate, creationName, dealName, dealType, id, revisionDate, revisionName, security, side,
+				sourceListId, status, trader, typeAccount);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bid other = (Bid) obj;
+		return Objects.equals(account, other.account) && Objects.equals(ask, other.ask)
+				&& Objects.equals(askQuantity, other.askQuantity) && Objects.equals(benchmark, other.benchmark)
+				&& Objects.equals(bid, other.bid) && Objects.equals(bidDate, other.bidDate)
+				&& Objects.equals(bidQuantity, other.bidQuantity) && Objects.equals(book, other.book)
+				&& Objects.equals(commentary, other.commentary) && Objects.equals(creationDate, other.creationDate)
+				&& Objects.equals(creationName, other.creationName) && Objects.equals(dealName, other.dealName)
+				&& Objects.equals(dealType, other.dealType) && Objects.equals(id, other.id)
+				&& Objects.equals(revisionDate, other.revisionDate) && Objects.equals(revisionName, other.revisionName)
+				&& Objects.equals(security, other.security) && Objects.equals(side, other.side)
+				&& Objects.equals(sourceListId, other.sourceListId) && Objects.equals(status, other.status)
+				&& Objects.equals(trader, other.trader) && Objects.equals(typeAccount, other.typeAccount);
+	}
 }

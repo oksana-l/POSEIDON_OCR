@@ -44,7 +44,7 @@
 							<td style="width: 25%" th:text="${bid.bidQuantity}"></td> 
 							<td style="width: 15%" class="text-center">
 								<a th:href="@{/bid/update/{id}(id=${bid.id})}">Edit</a>&nbsp;|&nbsp;
-								<a th:href="@{delete/{id}(id=${bid.id})}">Delete</a>
+								<a th:href="@{/bid/delete/{id}(id=${bid.id})}">Delete</a>
 							</td>
 						</tr>
 					</tbody>

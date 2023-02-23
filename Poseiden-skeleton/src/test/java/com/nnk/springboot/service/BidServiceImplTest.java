@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +35,10 @@ public class BidServiceImplTest {
 	@Test
 	public void shouldFindAllBidsTest() {
 		Bid bid = new Bid();
-		bid.setAccount("Premium");
+		bid.setId(1);
+		bid.setAccount("TestAccount");
+		bid.setTypeAccount("TestType");
+		bid.setBidQuantity(3);
 		List<Bid> bidList= new ArrayList<Bid>();
 		bidList.add(bid);
 		
@@ -46,7 +48,10 @@ public class BidServiceImplTest {
 
 		Assertions.assertEquals(bidList.isEmpty(), newBidList.isEmpty());
 		Assertions.assertEquals(bidList.size(), newBidList.size());
-		Assertions.assertEquals("Premium", newBidList.get(0).getAccount());
+		Assertions.assertEquals(1, newBidList.get(0).getId());
+		Assertions.assertEquals("TestAccount", newBidList.get(0).getAccount());
+		Assertions.assertEquals("TestType", newBidList.get(0).getTypeAccount());
+		Assertions.assertEquals(3, newBidList.get(0).getBidQuantity());
 	}
 	
 	@Test
@@ -74,7 +79,7 @@ public class BidServiceImplTest {
 		bid.setTypeAccount("TestType");
 		bid.setBidQuantity(3);
 		
-		when(bidRepository.getBidById(anyInt())).thenReturn(Optional.of(bid));
+		when(bidRepository.getBidById(anyInt())).thenReturn(bid);
 		
 		BidFormDTO bidDto = bidService.getBidById(1);
 		
@@ -96,7 +101,7 @@ public class BidServiceImplTest {
 		bid.setTypeAccount("TestType");
 		bid.setBidQuantity(3);
 		
-		when(bidRepository.getBidById(anyInt())).thenReturn(Optional.of(bid));	
+		when(bidRepository.getBidById(anyInt())).thenReturn(bid);	
 		when(bidRepository.save(any())).thenReturn(new Bid(bidDto));
 		
 		Bid updatedBid = bidService.update(1, bidDto);
@@ -114,5 +119,12 @@ public class BidServiceImplTest {
 		bidService.deleteBidById(1);
 		
 		verify(bidRepository).deleteById(1);
+	}
+	
+	@Test
+	public void shouldVerifIsBidExists() {
+		when(bidRepository.existsById(anyInt())).thenReturn(true);
+		
+		Assertions.assertTrue(bidService.ifBidExists(anyInt()));
 	}
 }

@@ -16,4 +16,6 @@ public interface TradeService {
 	Trade update(Integer id, TradeFormDTO ruleDto);
 	
 	void deleteTradeById(Integer id);
+	
+	boolean ifTradeExists(Integer id);
 }

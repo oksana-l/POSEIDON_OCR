@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -71,4 +73,22 @@ public class RatingFormDTO {
 		this.orderNumber = orderNumber;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(fitchRating, id, moodysRating, orderNumber, sandPRating);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RatingFormDTO other = (RatingFormDTO) obj;
+		return Objects.equals(fitchRating, other.fitchRating) && Objects.equals(id, other.id)
+				&& Objects.equals(moodysRating, other.moodysRating) && Objects.equals(orderNumber, other.orderNumber)
+				&& Objects.equals(sandPRating, other.sandPRating);
+	}
 }

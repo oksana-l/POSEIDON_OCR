@@ -16,4 +16,6 @@ public interface RuleService {
 	Rule update(Integer id, RuleFormDTO ruleDto);
 	
 	void deleteRuleById(Integer id);
+	
+	boolean ifRuleExists(Integer id);
 }

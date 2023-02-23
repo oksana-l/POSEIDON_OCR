@@ -57,4 +57,10 @@ public class RuleServiceImpl implements RuleService {
 		ruleRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public boolean ifRuleExists(Integer id) {
+		
+		return ruleRepository.existsById(id);
+	}
 }

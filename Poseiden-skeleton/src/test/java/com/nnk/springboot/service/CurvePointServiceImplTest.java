@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.dto.CurveFormDTO;
+import com.nnk.springboot.domain.dto.CurvePointFormDTO;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.services.CurvePointService;
 import com.nnk.springboot.services.CurvePointServiceImpl;
@@ -50,7 +50,7 @@ public class CurvePointServiceImplTest {
 	
 	@Test
 	public void shouldCreateTest() {
-		CurveFormDTO curvePointDto = new CurveFormDTO();
+		CurvePointFormDTO curvePointDto = new CurvePointFormDTO();
 		curvePointDto.setCurveId(1);
 		curvePointDto.setTerm(3d);
 		curvePointDto.setValue(5d);
@@ -75,7 +75,7 @@ public class CurvePointServiceImplTest {
 		
 		when(curvePointRepository.getCurvePointById(anyInt())).thenReturn(curvePoint);
 		
-		CurveFormDTO curvePointDto = curvePointService.getCurvePointById(1);
+		CurvePointFormDTO curvePointDto = curvePointService.getCurvePointById(1);
 		
 		Assertions.assertEquals(1, curvePointDto.getId());
 		Assertions.assertEquals(1, curvePointDto.getCurveId());
@@ -85,7 +85,7 @@ public class CurvePointServiceImplTest {
 	
 	@Test
 	public void shouldUpdateTest() {
-		CurveFormDTO curvePointDto = new CurveFormDTO();
+		CurvePointFormDTO curvePointDto = new CurvePointFormDTO();
 		curvePointDto.setCurveId(1);;
 		curvePointDto.setTerm(2d);;
 		curvePointDto.setValue(5d);
@@ -113,5 +113,12 @@ public class CurvePointServiceImplTest {
 		curvePointService.deleteCurvePointById(1);
 		
 		verify(curvePointRepository).deleteById(1);
+	}
+	
+	@Test
+	public void shouldVerifIsCurvePointExists() {
+		when(curvePointRepository.existsById(anyInt())).thenReturn(true);
+		
+		Assertions.assertTrue(curvePointService.ifCurvePointExists(anyInt()));
 	}
 }

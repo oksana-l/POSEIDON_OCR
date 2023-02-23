@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.NotBlank;
 
 import com.nnk.springboot.domain.Rule;
@@ -89,6 +91,26 @@ public class RuleFormDTO {
 
 	public void setSqlPart(String sqlPart) {
 		this.sqlPart = sqlPart;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, id, json, name, sqlPart, sqlStr, template);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RuleFormDTO other = (RuleFormDTO) obj;
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(json, other.json) && Objects.equals(name, other.name)
+				&& Objects.equals(sqlPart, other.sqlPart) && Objects.equals(sqlStr, other.sqlStr)
+				&& Objects.equals(template, other.template);
 	}
 	
 }

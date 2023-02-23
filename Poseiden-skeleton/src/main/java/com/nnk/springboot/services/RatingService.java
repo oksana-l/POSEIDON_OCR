@@ -16,4 +16,6 @@ public interface RatingService {
 	Rating update(Integer id, RatingFormDTO ratingDto);
 
 	RatingFormDTO getRatingById(Integer id);
+	
+	boolean ifRatingExists(Integer id);
 }

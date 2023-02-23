@@ -34,21 +34,26 @@ public class BidServiceImpl implements BidService {
 
 	@Override
 	public BidFormDTO getBidById(Integer id) {
-		return new BidFormDTO(bidRepository.getBidById(id).get());
+		return new BidFormDTO(bidRepository.getBidById(id));
 	}
 
 	@Override
 	public Bid update(Integer id, BidFormDTO bidDto) {
-		Bid bid = bidRepository.getBidById(id).get();
+		Bid bid = bidRepository.getBidById(id);
 		bid.setAccount(bidDto.getAccount());
 		bid.setTypeAccount(bidDto.getTypeAccount());
 		bid.setBidQuantity(bidDto.getBidQuantity());
 		return bidRepository.save(bid);
-		
 	}
 
 	@Override
 	public void deleteBidById(Integer id) {
 		bidRepository.deleteById(id);
+	}
+
+	@Override
+	public boolean ifBidExists(Integer id) {
+		
+		return bidRepository.existsById(id);
 	}
 }
