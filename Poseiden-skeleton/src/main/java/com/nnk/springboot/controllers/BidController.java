@@ -16,43 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.nnk.springboot.domain.Bid;
 import com.nnk.springboot.domain.dto.BidFormDTO;
 import com.nnk.springboot.services.BidService;
 
-/**
- * The Class BidController.
- */
 @Controller
 @RequestMapping("/bid")
 @SessionAttributes("user")
 public class BidController {
     
-	/** 
-	 * The logger. 
-	 * 
-	 * */
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private BidService bidService;
 	
-	/**
-	 * Bid.
-	 *
-	 * @return the bid
-	 */
 	@ModelAttribute("bid")
-	public Bid bid() {
-		return new Bid();
+	public BidFormDTO bid() {
+		return new BidFormDTO();
 	}
-	
-    /**
-     * Displays the Bid list.
-     *
-     * @param model the model
-     * @return the string
-     */
+
     @GetMapping("/list")
     public String bidList(Model model) {   	
     	logger.info("Displayng the list of Bids");   	
@@ -60,27 +41,16 @@ public class BidController {
         return "bid/list";
     }
 
-    /**
-     * Displays the add Bid form.
-     *
-     * @return the string
-     */
     @GetMapping("/add")
-    public String addBidForm() {  	
+    public String addBidForm() {
     	logger.info("Displayng the form for adding Bid");  	
         return "bid/add";
     }
 
-    /**
-     * Validate the creation of a new Bid.
-     *
-     * @param bidDto the bid dto
-     * @param result the result
-     * @return the string
-     */
     @PostMapping("/validate")
     public String validate(@ModelAttribute("bid") @Valid BidFormDTO bidDto,
-    					BindingResult result) {
+    		BindingResult result) {
+    	
     	if (result.hasErrors()) {
         	logger.info("The Bid has not added");
         	return "bid/add";
@@ -90,13 +60,6 @@ public class BidController {
         return "redirect:/bid/list";
     }
 
-    /**
-     * Displays the update Bid form.
-     *
-     * @param id the id
-     * @param model the model
-     * @return the string
-     */
     @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, 
     		@ModelAttribute("bid") @Valid BidFormDTO bidDto, 
@@ -106,20 +69,12 @@ public class BidController {
             FieldError error = new FieldError("bid", "id", "The Bid whit this ID is not exists");
             result.addError(error);
         } else {
-        logger.info("Displayng the Bid with id {}", id);
-        model.addAttribute("bid", bidService.getBidById(id));
+	        logger.info("Displayng the Bid with id {}", id);
+	        model.addAttribute("bid", bidService.getBidById(id));
         }
         return "bid/update";
     }
 
-    /**
-     * Update the Bid if it exists and if the data is valid.
-     *
-     * @param bidDto the bid dto
-     * @param result the result
-     * @param id the id
-     * @return the string
-     */
     @PostMapping("/update/{id}")
     public String updateBid(@ModelAttribute("bid") @Valid BidFormDTO bidDto,
     		BindingResult result, @PathVariable("id") Integer id) { 
@@ -132,18 +87,12 @@ public class BidController {
             logger.info("The Bid with id {} has not updated", id);
             return "bid/update";
         } else {
-        logger.info("Updating the Bid with id {}", id);
-        bidService.update(id, bidDto);
-        return "redirect:/bid/list";
+	        logger.info("Updating the Bid with id {}", id);
+	        bidService.update(id, bidDto);
+	        return "redirect:/bid/list";
         }
     }
 
-    /**
-     * Delete the Bid.
-     *
-     * @param id the id
-     * @return the string
-     */
     @GetMapping("/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id) {
     	bidService.deleteBidById(id);

@@ -39,7 +39,7 @@ public class BidServiceImplTest {
 		bid.setAccount("TestAccount");
 		bid.setTypeAccount("TestType");
 		bid.setBidQuantity(3);
-		List<Bid> bidList= new ArrayList<Bid>();
+		List<Bid> bidList = new ArrayList<Bid>();
 		bidList.add(bid);
 		
 		when(bidRepository.findAll()).thenReturn(bidList);

@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -8,11 +10,11 @@ import com.nnk.springboot.domain.CurvePoint;
 public class CurvePointFormDTO {
 
 	private Integer id;
-	@NotNull @Min(0)
+	@NotNull(message = "Curve Id is mandatory") @Min(0)
 	private Integer curveId;
-	@NotNull @Min(0)
+	@NotNull(message = "Term is mandatory") @Min(0)
 	private Double term;
-	@NotNull
+	@NotNull(message = "Value is mandatory")
 	private Double value;
 	
 	public CurvePointFormDTO() {
@@ -50,5 +52,19 @@ public class CurvePointFormDTO {
 	}
 	public void setValue(Double value) {
 		this.value = value;
-	}	
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CurvePointFormDTO other = (CurvePointFormDTO) obj;
+		return Objects.equals(curveId, other.curveId) && Objects.equals(id, other.id)
+				&& Objects.equals(term, other.term) && Objects.equals(value, other.value);
+	}
+	
 }

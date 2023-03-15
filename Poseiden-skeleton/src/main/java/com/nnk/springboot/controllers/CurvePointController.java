@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.dto.CurvePointFormDTO;
 import com.nnk.springboot.services.CurvePointService;
 
@@ -31,8 +30,8 @@ public class CurvePointController {
 	private CurvePointService curvePointService;
 	
 	@ModelAttribute("curvePoint")
-	public CurvePoint curvePoint() {
-		return new CurvePoint();
+	public CurvePointFormDTO curvePoint() {
+		return new CurvePointFormDTO();
 	}
 
     @GetMapping("/list")

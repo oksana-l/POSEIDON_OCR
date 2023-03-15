@@ -9,17 +9,17 @@ import com.nnk.springboot.domain.Rule;
 public class RuleFormDTO {
 	
 	private Integer id;
-	@NotBlank
+	@NotBlank(message = "Name is mandatory")
 	private String name;
-	@NotBlank
+	@NotBlank(message = "Description is mandatory")
 	private String description;
-	@NotBlank
+	@NotBlank(message = "Json is mandatory")
 	private String json;
-	@NotBlank
+	@NotBlank(message = "Template is mandatory")
 	private String template;
-	@NotBlank
+	@NotBlank(message = "SQLstr is mandatory")
 	private String sqlStr;
-	@NotBlank
+	@NotBlank(message = "SQLpart is mandatory")
 	private String sqlPart;
 	
 	public RuleFormDTO() {
@@ -94,11 +94,6 @@ public class RuleFormDTO {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(description, id, json, name, sqlPart, sqlStr, template);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -106,6 +101,7 @@ public class RuleFormDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		RuleFormDTO other = (RuleFormDTO) obj;
 		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(json, other.json) && Objects.equals(name, other.name)

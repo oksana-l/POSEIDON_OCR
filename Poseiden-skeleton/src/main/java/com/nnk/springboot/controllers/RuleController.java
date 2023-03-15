@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.nnk.springboot.domain.Rule;
 import com.nnk.springboot.domain.dto.RuleFormDTO;
 import com.nnk.springboot.services.RuleService;
 
@@ -31,8 +30,8 @@ public class RuleController {
 	private RuleService ruleService;
 	
 	@ModelAttribute("rule")
-	public Rule rule() {
-		return new Rule();
+	public RuleFormDTO rule() {
+		return new RuleFormDTO();
 	}
 
     @GetMapping("/list")

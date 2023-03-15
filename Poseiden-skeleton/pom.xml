@@ -74,10 +74,21 @@
         	<groupId>org.hibernate</groupId>
        		<artifactId>hibernate-validator</artifactId>
         	<version>6.0.13.Final</version>
-	    </dependency> 
+	    </dependency>
+	    <dependency>
+			<groupId>org.passay</groupId>
+			<artifactId>passay</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -100,6 +111,11 @@
 			<plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+					<excludes>
+						<exclude>com/nnk/springboot/domain/**/*</exclude>
+					</excludes>
+				</configuration>
                 <executions>
                     <execution>
                    		<id>default-instrument</id>

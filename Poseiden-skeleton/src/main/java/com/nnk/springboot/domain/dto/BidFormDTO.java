@@ -11,11 +11,11 @@ import com.nnk.springboot.domain.Bid;
 public class BidFormDTO {
 
 	private Integer id;
-	@NotBlank
+	@NotBlank(message = "Account is mandatory")
 	private String account;
-	@NotBlank
+	@NotBlank(message = "Type is mandatory")
 	private String typeAccount;
-	@NotNull @Min(0)
+	@NotNull(message = "Bid Quantity is mandatory") @Min(0)
 	private Integer bidQuantity;
 	
 	public BidFormDTO() {

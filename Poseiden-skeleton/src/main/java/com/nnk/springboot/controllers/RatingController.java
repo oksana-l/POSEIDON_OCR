@@ -31,8 +31,8 @@ public class RatingController {
 	RatingService ratingService;
 	
 	@ModelAttribute("rating")
-	public Rating rating() {
-		return new Rating();
+	public RatingFormDTO rating() {
+		return new RatingFormDTO();
 	}
 	
     @GetMapping("/list")
@@ -86,8 +86,8 @@ public class RatingController {
         	logger.info("The Rating with id {} has not updated", id);
             return "rating/update";
         }
+        logger.info("Updating the Rating with id {}", id);
         ratingService.update(id, ratingFormDto);
-        logger.info("The Rating with id " + id + " has updated");
         return "redirect:/rating/list";
     }
 

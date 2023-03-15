@@ -11,13 +11,13 @@ import com.nnk.springboot.domain.Rating;
 public class RatingFormDTO {
 
 	private Integer id;
-	@NotBlank
+	@NotBlank(message = "Moody's Rating is mandatory")
 	private String moodysRating; 
-	@NotBlank
+	@NotBlank(message = "SandP Rating is mandatory")
 	private String sandPRating; 
-	@NotBlank
+	@NotBlank(message = "Fitch Rating is mandatory")
 	private String fitchRating; 
-	@NotNull @Min(0)
+	@NotNull(message = "Order Number is mandatory") @Min(0)
 	private Integer orderNumber;
 
 	public RatingFormDTO() {
@@ -86,6 +86,7 @@ public class RatingFormDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		RatingFormDTO other = (RatingFormDTO) obj;
 		return Objects.equals(fitchRating, other.fitchRating) && Objects.equals(id, other.id)
 				&& Objects.equals(moodysRating, other.moodysRating) && Objects.equals(orderNumber, other.orderNumber)

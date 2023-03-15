@@ -191,9 +191,10 @@ public class RatingControllerTest {
 			mockMvc.perform(post("/rating/update/1")
 					.with(csrf())
 					.with(user(TEST_USER_AUTH))
-			        .param("account", "")
-			        .param("typeAccount", "")
-			        .param("bidQuantity", ""))
+		            .param("moodysRating", "")
+		            .param("sandPRating", "")
+		            .param("fitchRating", "")
+		            .param("orderNumber", ""))
 					.andExpect(status().isOk())
 					.andExpect(view().name("rating/update"));
 			
@@ -212,5 +213,4 @@ public class RatingControllerTest {
 			
 			verify(ratingService).deleteRatingById(2);
 		}
-
 	}

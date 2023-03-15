@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,11 +11,11 @@ import com.nnk.springboot.domain.Trade;
 public class TradeFormDTO {
 	
 	private Integer id;
-	@NotBlank
+	@NotBlank(message = "Account is mandatory")
 	private String account;
-	@NotBlank
+	@NotBlank(message = "Type is mandatory")
 	private String type;
-	@NotNull @Min(0)
+	@NotNull(message = "Buy Quantity is mandatory") @Min(0)
 	private Double buyQuantity;
 	
 	public TradeFormDTO() {
@@ -59,5 +61,17 @@ public class TradeFormDTO {
 	public void setBuyQuantity(Double buyQuantity) {
 		this.buyQuantity = buyQuantity;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TradeFormDTO other = (TradeFormDTO) obj;
+		return Objects.equals(account, other.account) && Objects.equals(buyQuantity, other.buyQuantity)
+				&& Objects.equals(id, other.id) && Objects.equals(type, other.type);
+	}
 }

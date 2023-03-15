@@ -23,6 +23,6 @@ public class LoginControllerTest {
 	@Test
 	public void shouldShowLoginTest() throws Exception {
 		mockMvc.perform(get("/login"))
-			.andExpect(status().isOk());
+			   .andExpect(status().isOk());
 	}
 }

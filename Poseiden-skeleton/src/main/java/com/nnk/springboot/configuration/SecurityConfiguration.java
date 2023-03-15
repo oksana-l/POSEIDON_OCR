@@ -15,6 +15,10 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import com.nnk.springboot.services.UserService;
 
+/**
+ *  Spring Web MVC Security Java Configuration
+ * 	Configures authentication and authorization for the application.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
@@ -23,16 +27,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * Supports session control to ensure that Spring's security 
+	 * session registry is notified when the session is destroyed.
+	 *
+	 * @return the http session event publisher
+	 */
 	@Bean
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 	    return new HttpSessionEventPublisher();
 	}
 
+	/**
+	 * Password encoder is used to perform a one-way transformation 
+	 * of a password to let the password be stored securely that needs 
+	 * to be compared to a user-provided password at the time of authentication.
+	 *
+	 * @return the password encoder
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * DaoAuthenticationProvider is an AuthenticationProvider implementation 
+	 * that uses a UserDetailsService and PasswordEncoder 
+	 * to authenticate a username, password and GrantedAuthority.
+	 *
+	 * @return the dao authentication provider
+	 */
 	@Bean
 	public DaoAuthenticationProvider authProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -41,11 +65,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return authProvider;
 	}
 
+	/**
+	 * Configure security filters for authentication and authorization.
+	 *
+	 * @param auth
+	 * @throws Exception
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authProvider());
 	}
 
+	/**
+	 * Configures the chain of security filters for authentication and authorization.
+	 *
+	 * @throws Exception
+	 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf()
@@ -68,5 +103,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 			.accessDeniedPage("/403");
 	}
-
 }

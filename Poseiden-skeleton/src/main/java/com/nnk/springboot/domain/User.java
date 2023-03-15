@@ -8,22 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.nnk.springboot.domain.dto.UserDTO;
+
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "Username is mandatory")
+    @NotBlank
     @Column
     private String username;
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank
     @Column
     private String password;
-    @NotBlank(message = "FullName is mandatory")
+    @NotBlank
     @Column
     private String fullname;
-    @NotBlank(message = "Role is mandatory")
+    @NotBlank
     @Column
     private String role;
 
@@ -31,18 +33,30 @@ public class User {
     	
     }
     
-    public User(String username, String password, String fullname, String role) {
+    public User(Integer id, String username, String password, String fullname, String role) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.fullname = fullname;
 		this.role = role;
 	}
 
+	public User(UserDTO userDto) {
+		this.username = userDto.getUsername();
+		this.password = userDto.getPassword();
+		this.fullname = userDto.getFullname();
+		this.role = userDto.getRole();
+	}
+
 	public Integer getId() {
         return id;
     }
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
     public String getUsername() {
         return username;
     }
@@ -73,5 +87,5 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
+    }    
 }

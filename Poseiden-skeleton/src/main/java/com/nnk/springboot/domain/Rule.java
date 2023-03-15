@@ -18,22 +18,22 @@ public class Rule {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	Integer id;
 	@Column
-	@NotBlank(message = "Name is mandatory")
+	@NotBlank
 	String name;
 	@Column
-	@NotBlank(message = "Description is mandatory")
+	@NotBlank
 	String description; 
 	@Column
-	@NotBlank(message = "Json is mandatory")
+	@NotBlank
 	String json;
 	@Column
-	@NotBlank(message = "Template is mandatory")
+	@NotBlank
 	String template;
 	@Column
-	@NotBlank(message = "SQLstr is mandatory")
+	@NotBlank
 	String sqlStr; 
 	@Column
-	@NotBlank(message = "SQLpart is mandatory")
+	@NotBlank
 	String sqlPart;
 	
 	public Rule() {
@@ -117,6 +117,4 @@ public class Rule {
 	public void setSqlPart(String sqlPart) {
 		this.sqlPart = sqlPart;
 	}
-	
-	
 }
